@@ -2,7 +2,7 @@
 Recruiter for Nationstates written in node.js
 
 ## Setup
-1. Download **all** the files, or fork the repo.
+1. Download **all** the files, or clone the repo to your local PC.
 2. Run `npm install` in a command line opened in the folder, which will install all dependencies.
 3. Replace all info in the `config.json` with your own info.
 4. Run the program in the command line with `node index.js`.
