@@ -7,7 +7,7 @@ const fs = require("fs");
       tgtimeout = config.recruitment;
       nsapi = require("nsapi");
       api = new nsapi.NsApi("github.com/ModzOnYT", true, 600, 60000, 180000, false);
-      tgspeed = 180000
+      tgspeed = 180000;
 
       function boot() {
         const now = new Date();
@@ -38,7 +38,6 @@ const fs = require("fs");
       };
 
       function sendtg() {
-          // TODO: Replace telegram details with your own
           var clientKey = ""; //not used yet
           var telegramId = ""; //not used yet
           var telegramSecretKey = ""; //not used yet
