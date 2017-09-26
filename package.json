@@ -1,0 +1,40 @@
+{
+  "name": "jsNSrecruit",
+  "version": "0.1.2",
+  "description": "Recruiter for Nationstates, written in Node.js",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js"
+  },
+  "author": "ModzOnYT",
+  "license": "MIT",
+  "dependencies": {
+    "moment": "^2.18.1",
+    "nsapi": "^0.1.13"
+  },
+  "eslintConfig": {
+    "extends": "aqua",
+    "rules": {
+      "quotes": [
+        "warn",
+        "double",
+        {
+          "avoidEscape": true,
+          "allowTemplateLiterals": true
+        }
+      ],
+      "indent": [
+        "error",
+        2,
+        {
+          "SwitchCase": 1
+        }
+      ],
+      "max-len": [
+        "warn",
+        150
+      ],
+      "eol-last": 0
+    }
+  }
+}
