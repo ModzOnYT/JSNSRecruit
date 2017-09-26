@@ -1,8 +1,7 @@
 {
-  "clientkey" : "",
-  "telegramid" : "",
-  "secretid" : "",
+  "clientkey" : "PUT-YOUR-CLIENT-KEY-HERE",
+  "telegramid" : "SAME-FOR-THE-TELEGRAM-ID",
+  "secretid" : "DO-THIS-AS-WELL-FOR-THE-TELEGRAM-SECRET-ID",
   "recruitment" : "true",
   "type" : "founding",
-  "_recruitment is not used yet" : ""
 }
