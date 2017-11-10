@@ -15,7 +15,7 @@ Recruiter for Nationstates written in node.js
 5. Submit a pull request!
 
 ## Author
-**jsNSRecruit** © [modzdev](https://github.com/modzdev), Released under the [MIT](https://github.com/modzdev/jsNSRecruit/blob/master/LICENSE) License.<br>
-Authored and maintained by ModzOn.
+**jsNSRecruit** © [devdutchy](https://github.com/devdutchy), Released under the [MIT](https://github.com/devdutchy/moderationbot/blob/master/LICENCE) Licence.<br>
+Authored and maintained by devdutchy.
 
-> GitHub [@modzdev](https://github.com/modzdev)
+> GitHub [@devdutchy](https://github.com/devdutchy)
