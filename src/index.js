@@ -1,11 +1,34 @@
-const snekfetch = require("snekfetch");
+const { EventEmitter } = require("events");
 const logger = require("./util/Logger");
-const { clientid, telegramid, secretid } = require("../config.json");
+const { getNation, sendTG } = require("./rest/request");
 
-snekfetch
-  .get(`https://www.nationstates.net/cgi-bin/api.cgi?a=sendTG&client=${clientid}&tgid=${telegramid}&key=${secretid}&to=new-indochina`)
-  .then(res => {
-    logger.log("NSAPI", res.status);
-    logger.log("NSAPI", res.ok);
-  })
-  .catch(error => logger.error("NSAPI", error.stack));
+module.exports = class jsNSRecruit extends EventEmitter {
+  constructor(options = {}) {
+    if (typeof options.clientID === "undefined") throw new RangeError("A client ID must be provided");
+    if (typeof options.tgID === "undefined") throw new RangeError("A telegram ID must be provided");
+    if (typeof options.secret === "undefined") throw new RangeError("A telegram secret must be provided");
+
+    super(options);
+
+    this.clientID = options.clientID;
+    this.telegramID = options.tgID;
+    this.telegramSecret = options.secret;
+  }
+  init() {
+    logger.info("RECRUITER", "Getting ready...");
+
+    setTimeout(async () => {
+      try {
+        const nation = await getNation();
+        const { status, code } = await sendTG(this.clientID, this.telegramID, this.telegramSecret, nation);
+
+        /**
+         * Emitted when a telegram has succesfully been sent
+         */
+        this.emit("telegramSucess", status, code);
+      } catch (error) {
+        this.emit("telegramError", error);
+      }
+    }, 190e3);
+  }
+};

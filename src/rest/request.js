@@ -4,23 +4,22 @@ const { userAgent } = require("../Constants");
 const { parseString } = require("xml2js");
 
 async function getNation() {
-  let nation;
   try {
     const result = await snekfetch
       .get("https://www.nationstates.net/cgi-bin/api.cgi?q=happenings;filter=founding;limit=5")
       .set({ "User-Agent": userAgent });
-
+    let nation;
     parseString(result.text, (err, obj) => {
       if (err) throw err;
       const raw = obj.WORLD.HAPPENINGS[0].EVENT[0];
       const text = raw.TEXT[0].split("@@").join("");
       [nation] = text.trim().split(" ");
     });
+    return nation;
   } catch (error) {
     logger.error("NSAPI", error.stack);
-    nation = null;
+    return null;
   }
-  return nation;
 }
 
 function sendTG({ clientid, tgid, secret, nation } = {}) {
