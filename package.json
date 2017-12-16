@@ -1,40 +1,28 @@
 {
-  "name": "jsNSrecruit",
+  "name": "jsnsrecruit",
   "version": "0.1.2",
   "description": "Recruiter for Nationstates, written in Node.js",
-  "main": "index.js",
+  "main": "src/index.js",
   "scripts": {
-    "start": "node index.js"
+    "jsnsrecruit": "electron electron/index.js",
+    "start": "node src/index.js"
   },
-  "author": "ModzOnYT",
+  "author": "Michel Nguyen <modzongaming@gmail.com> (how-b1nzy-banned-me.tk)",
   "license": "MIT",
-  "dependencies": {
-    "moment": "^2.18.1",
-    "nsapi": "^0.1.13"
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/devdutchy/jsNSrecruit"
   },
-  "eslintConfig": {
-    "extends": "aqua",
-    "rules": {
-      "quotes": [
-        "warn",
-        "double",
-        {
-          "avoidEscape": true,
-          "allowTemplateLiterals": true
-        }
-      ],
-      "indent": [
-        "error",
-        2,
-        {
-          "SwitchCase": 1
-        }
-      ],
-      "max-len": [
-        "warn",
-        150
-      ],
-      "eol-last": 0
-    }
+  "bugs": {
+    "url": "https://github.com/devdutchy/jsNSRecruit/issues"
+  },
+  "dependencies": {
+    "electron": "^1.7.9",
+    "snekfetch": "^3.6.1",
+    "xml2js": "^0.4.19"
+  },
+  "devDependencies": {
+    "eslint": "^4.13.1",
+    "eslint-config-aqua": "^2.0.1"
   }
 }
