@@ -1,5 +1,5 @@
 # jsNSRecruit
-Recruiter for Nationstates written in node.js
+Recruiter for [Nationstates](https://nationstates.net) written in node.js.
 
 ## Setup
 1. Download/clone the repo to your local computer/server.
