@@ -7,7 +7,7 @@ Recruiter for [Nationstates](https://nationstates.net) written in node.js.
 3. Rename the `config.example.json` to `config.json` and replace all necessarily information.
 4. After installation of the dependencies has finished, run `npm start` to run the recruiter.
 
-<br>**OPTIONAL**:
+**OPTIONAL**:
 Configure [pm2](http://pm2.keymetrics.io/) to keep the script running. Make sure to let pm2 run the `npm start` script.
 
 ## Contributing
