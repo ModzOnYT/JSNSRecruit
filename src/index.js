@@ -1,34 +1,23 @@
-const { EventEmitter } = require("events");
+const { clientID, tgID, secretID } = require("../config.json");
 const logger = require("./util/Logger");
 const { getNation, sendTG } = require("./rest/request");
 
-module.exports = class jsNSRecruit extends EventEmitter {
-  constructor(options = {}) {
-    if (typeof options.clientID === "undefined") throw new RangeError("A client ID must be provided");
-    if (typeof options.tgID === "undefined") throw new RangeError("A telegram ID must be provided");
-    if (typeof options.secret === "undefined") throw new RangeError("A telegram secret must be provided");
+async function recruit() {
+  try {
+    logger.log("RECRUITER", "Searching for nation...");
+    const nation = await getNation();
+    if (!nation) {
+      logger.info("RECRUITER", "No nation found to recruit, skipping...");
+      return;
+    }
+    logger.log("RECRUITER", `Nation found: ${nation}`);
 
-    super(options);
-
-    this.clientID = options.clientID;
-    this.telegramID = options.tgID;
-    this.telegramSecret = options.secret;
+    logger.log("RECRUITER", `Attempting to send telegram to ${nation}...`);
+    const { status, code } = await sendTG({ clientID, tgID, secret: secretID, nation });
+    logger.info("RECRUITER", `Successfully sent telegram to: ${nation}, status: ${status}, response code ${code}. Waiting 180 seconds...`);
+  } catch (err) {
+    logger.info("RECRUITER", `Failed to send telegram: ${err}`);
   }
-  init() {
-    logger.info("RECRUITER", "Getting ready...");
-
-    setTimeout(async () => {
-      try {
-        const nation = await getNation();
-        const { status, code } = await sendTG(this.clientID, this.telegramID, this.telegramSecret, nation);
-
-        /**
-         * Emitted when a telegram has succesfully been sent
-         */
-        this.emit("telegramSucess", status, code);
-      } catch (error) {
-        this.emit("telegramError", error);
-      }
-    }, 190e3);
-  }
-};
+}
+logger.info("RECRUITER", "Recruiter active! Waiting 180 seconds...");
+setInterval(recruit, 181e3);

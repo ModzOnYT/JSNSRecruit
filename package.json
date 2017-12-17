@@ -4,7 +4,6 @@
   "description": "Recruiter for Nationstates, written in Node.js",
   "main": "src/index.js",
   "scripts": {
-    "jsnsrecruit": "electron electron/index.js",
     "start": "node src/index.js"
   },
   "author": "Michel Nguyen <modzongaming@gmail.com> (how-b1nzy-banned-me.tk)",
