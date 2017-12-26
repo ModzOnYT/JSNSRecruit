@@ -15,7 +15,7 @@ module.exports = class Request {
         }
         let nation;
         parseString(result.text, (err, obj) => {
-          if (err) throw err;
+          if (err) reject(err);
           const raw = obj.WORLD.HAPPENINGS[0].EVENT[0];
           const text = raw.TEXT[0].split("@@").join("");
           [nation] = text.trim().split(" ");
