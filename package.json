@@ -9,7 +9,7 @@
     "lint": "./node_modules/.bin/eslint ."
   },
   "author": "Michel Nguyen <modzongaming@gmail.com> (how-b1nzy-banned-me.tk)",
-  "license": "MIT",
+  "license": "Apache-2.0",
   "repository": {
     "type": "git",
     "url": "https://github.com/devdutchy/jsNSrecruit"
