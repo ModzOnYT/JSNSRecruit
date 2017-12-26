@@ -1,5 +1,5 @@
 const request = require("snekfetch");
-const { USER_AGENT } = require("../Constants");
+const { USER_AGENT } = require("../util/Constants");
 const { parseString } = require("xml2js");
 
 module.exports = class Request {

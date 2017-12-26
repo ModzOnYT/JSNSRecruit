@@ -1,6 +1,6 @@
 const { clientID, tgID, secretID } = require("../config.json");
-const logger = require("./util/Logger");
-const { getNation, sendTG } = require("./rest/request");
+const logger = require("../util/Logger");
+const { getNation, sendTG } = require("../rest/request");
 
 async function recruit() {
   try {
