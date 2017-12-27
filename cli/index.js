@@ -13,11 +13,11 @@ async function recruit() {
     logger.log("RECRUITER", `Nation found: ${nation}`);
 
     logger.log("RECRUITER", `Attempting to send telegram to ${nation}...`);
-    const { status, code } = await sendTG({ clientID, tgID, secret: secretID, nation });
-    logger.info("RECRUITER", `Successfully sent telegram to: ${nation}, status: ${status}, response code ${code}. Waiting 180 seconds...`);
+    const { status, text } = await sendTG({ clientID, tgID, secret: secretID, nation });
+    logger.info("RECRUITER", `Successfully sent telegram to: ${nation}, status: ${status}, response code ${text}. Waiting 180 seconds...`);
   } catch (err) {
     logger.info("RECRUITER", `Failed to send telegram: ${err}`);
   }
 }
 logger.info("RECRUITER", "Recruiter active! Waiting 180 seconds...");
-setInterval(recruit, 181e3);
+setInterval(recruit, 181000);
