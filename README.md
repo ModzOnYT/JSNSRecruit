@@ -1,18 +1,29 @@
 # jsNSRecruit
 [![Discord](https://discordapp.com/api/guilds/297442085861064705/embed.png)](https://discord.gg/uApUXn6)
-> A recruiter for [Nationstates](https://nationstates.net) written in node.js.
+
+> A lightweight recruiter for [Nationstates](https://nationstates.net).
+
+## About
+jsNSRecruit is a lightweight recruiter for [NationStates](https://nationstates.net), written in plain HTML, CSS and JavaScript.
 
 ## Setup
-1. Download/clone the repo to your local computer/server.
-2. Run `npm install` to install all dependencies.
+```bash
+cd path/to/jsNSRecruit
+npm install
+```
 
 ## Startup
-```js
+```bash
+cd path/to/jsNSRecruit
 npm start
 ```
 
 **OPTIONAL**:
-Use the CLI version and configure [pm2](http://pm2.keymetrics.io/) to keep the script running. Make sure to let pm2 run the `npm run cli` script.
+Use the Command Line version and configure [pm2](http://pm2.keymetrics.io/) to keep the script running:
+```bash
+cd path/to/jsNSRecruit
+pm2 start cli/index.js
+```
 
 ## Contributing
 1. Fork it!
@@ -22,7 +33,7 @@ Use the CLI version and configure [pm2](http://pm2.keymetrics.io/) to keep the s
 5. Submit a pull request!
 
 ## Author
-**jsNSRecruit** © [devdutchy](https://github.com/devdutchy), Released under the [MIT](https://github.com/devdutchy/jsNSRecruit/blob/master/LICENCE) Licence.<br>
+**jsNSRecruit** © [devdutchy](https://github.com/devdutchy), Released under the [Apache-2.0](https://github.com/devdutchy/jsNSRecruit/blob/master/LICENCE) Licence.<br>
 Authored and maintained by devdutchy.
 
 > GitHub [@devdutchy](https://github.com/devdutchy)

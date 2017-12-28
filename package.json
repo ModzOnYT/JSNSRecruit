@@ -1,7 +1,7 @@
 {
   "name": "jsnsrecruit",
-  "version": "0.2.0-beta",
-  "description": "Recruiter for Nationstates, written in Node.js",
+  "version": "0.3.0-beta",
+  "description": "Lightweight recruiter for Nationstates, written in Node.js",
   "main": "index.js",
   "scripts": {
     "start": "./node_modules/.bin/electron .",
