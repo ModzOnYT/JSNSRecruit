@@ -8,11 +8,9 @@ let mainWindow;
 
 const createWindow = () => {
   mainWindow = new BrowserWindow({
-    minWidth: 846,
-    minHeight: 480,
-    height: 1280,
+    height: 768,
     width: 1024,
-    resizable: true,
+    resizable: false,
     title: "jsNSRecruit",
     autoHideMenuBar: true
   });

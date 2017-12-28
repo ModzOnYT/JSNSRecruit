@@ -6,50 +6,22 @@
     <link rel=stylesheet href=style.css />
   </head>
   <body>
-    <div>
-      <div id="forms">
-        <div id="alignright">
-          <div>
-            Client ID: <input type="text" id="clientid"></input> <button id="bclient">set</button>
-          </div>
-          <div>
-            Telegram ID: <input type="text" id="tgid"></input> <button id="btg">set</button>
-          </div>
-          <div>
-            Secret ID: <input type="text" id="secretid"></input> <button id="bsecret">set</button>
-          </div>
-        </div>
-      </div>
-      <div id="info">
-        <div id="alignleft">
-          <table>
-            <tr>
-              <td style="text-align:right;">
-                Client ID:
-              </td>
-              <td id="tableclient">Nothing set</td>
-            </tr>
-            <tr>
-              <td style="text-align:right;">
-                Telegram ID:
-              </td>
-              <td id="tabletelegram">Nothing set</td>
-            </tr>
-            <tr>
-              <td style="text-align:right;">
-                Secret ID:
-              </td>
-              <td id="tablesecret">Nothing set</td>
-            </tr>
-          </table>
-        </div>
-      </div>
+    <div id="input">
+      <h1>Recruiter settings</h1>
+      <input type="text" placeholder="Enter your Client Key" id="clientbox"></input>
+      <input type="text" placeholder="Enter your Telegram ID" id="telegrambox"></input>
+      <input type="text" placeholder="Enter your Secret ID" id="secretbox"></input>
+      <button id="button">Start recruitment</button>
     </div>
-    <div id="buttons">
-      <button id="startbutton">Start recruitment</button>
-      <button id="stopbutton">Stop recruitment</button>
+    <div id="right">
+      <div id="top">
+        <p>Client key: <span class="settingtext" id="clientkey">none set</span></p>
+        <p>Telegram ID: <span class="settingtext" id="telegramid">none set</span></p>
+        <p>Secret ID: <span class="settingtext" id="secretid">none set</span></p>
+      </div>
+      <div id="console">
     </div>
-    <div class="console"></div>
-    <script src=renderer.js></script>
+    <script src="renderer.js">
+    </script>
   </body>
 </html>

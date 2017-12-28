@@ -2,18 +2,17 @@
 const { webFrame } = require("electron");
 const { getNation, sendTG } = require("../rest/request");
 
-const start = document.getElementById("startbutton");
-const stop = document.getElementById("stopbutton");
-
 let interval;
+
+document.getElementById("console").style.height = `${768 - 269}px`;
 
 let logger = {};
 for (const method of Object.keys(console)) {
   logger[method] = function log(topic, ...args) {
     // eslint-disable-next-line no-console
     console[method](new Date().toLocaleString(), `[${topic}]`, ...args);
-    const newline = document.createElement("div");
-    const panel = document.getElementsByClassName("console")[0];
+    const newline = document.createElement("p");
+    const panel = document.getElementById("console");
     newline.innerHTML = `&gt; ${new Date().toLocaleString()} [${topic}] ${args.join(" ")}\n`;
     panel.appendChild(newline);
     panel.scrollTop = panel.scrollHeight;
@@ -27,25 +26,6 @@ window.CLIENT_ID = null;
 window.SECRET_ID = null;
 window.TELEGRAM_ID = null;
 
-function set(key, ...args) {
-  window[key] = encodeURIComponent(args.join(" "));
-}
-
-function startRecruit() {
-  if (window.CLIENT_ID === null || window.SECRET_ID === null || window.TELEGRAM_ID === null) {
-    return logger.warn("RECRUITER", "Cannot recruit with missing params! Aborting...");
-  }
-  return recruit().then(() => {
-    interval = setInterval(recruit, 181e3);
-  });
-}
-
-function stopRecruit() {
-  logger.info("RECRUITER", "Stopping recruitment...");
-  clearInterval(interval);
-  logger.info("RECRUITER", "Stopped recruitment!");
-}
-
 async function recruit() {
   try {
     logger.log("RECRUITER", "Searching for nation...");
@@ -57,51 +37,45 @@ async function recruit() {
     logger.log("RECRUITER", `Nation found: ${nation}`);
 
     logger.log("RECRUITER", `Attempting to send telegram to ${nation}...`);
-    const { status, code } = await sendTG({ clientID: window.CLIENT_ID, tgID: window.TELEGRAM_ID, secret: window.SECRET_ID, nation });
-    logger.info("RECRUITER", `Successfully sent telegram to: ${nation}, status: ${status}, response code ${code}. Waiting 180 seconds...`);
+    const { status, text } = await sendTG({ clientID: window.CLIENT_ID, tgID: window.TELEGRAM_ID, secret: window.SECRET_ID, nation });
+    logger.info("RECRUITER", `Successfully sent telegram to: ${nation}, status: ${status}, response code ${text.trim()}. Waiting 180 seconds...`);
   } catch (err) {
     logger.info("RECRUITER", `Failed to send telegram: ${err}`);
   }
 }
 
-start.onmousedown = () => {
-  startRecruit();
+const startbutton = document.getElementById("button");
+
+startbutton.onclick = () => {
+  if (!interval) {
+    logger.info("RECRUITER", "Starting recruitment...");
+    recruit();
+    interval = setInterval(recruit, 185000);
+    startbutton.textContent = "Stop recruitment";
+  } else {
+    logger.info("RECRUITER", "Stopping recruitment...");
+    clearInterval(interval);
+    interval = null;
+    logger.info("RECRUITER", "Stopped recruitment.");
+    startbutton.textContent = "Start recruitment";
+  }
 };
 
-stop.onmousedown = () => {
-  stopRecruit();
+const clientfield = document.getElementById("clientbox");
+const tgfield = document.getElementById("telegrambox");
+const secretfield = document.getElementById("secretbox");
+
+clientfield.onchange = () => {
+  window.CLIENT_ID = clientfield.value;
+  document.getElementById("clientkey").innerHTML = window.CLIENT_ID !== null ? window.CLIENT_ID : "none set";
 };
 
-const clientbutton = document.getElementById("bclient");
-const tgbutton = document.getElementById("btg");
-const secretbutton = document.getElementById("bsecret");
-
-clientbutton.onmousedown = () => {
-  const field = document.getElementById("clientid");
-  if (!field.value) return alert("Missing client ID value!");
-  set("CLIENT_ID", field.value);
-  const client = document.getElementById("tableclient");
-  client.innerHTML = field.value;
-  field.value = null;
-  return alert("Successfully set the client ID");
+tgfield.onchange = () => {
+  window.TELEGRAM_ID = tgfield.value;
+  document.getElementById("telegramid").innerHTML = window.TELEGRAM_ID !== null ? window.TELEGRAM_ID : "none set";
 };
 
-tgbutton.onmousedown = () => {
-  const field = document.getElementById("tgid");
-  if (!field.value) return alert("Missing telegram ID value!");
-  set("TELEGRAM_ID", field.value);
-  const client = document.getElementById("tabletelegram");
-  client.innerHTML = field.value;
-  field.value = null;
-  return alert("Successfully set the telegram ID");
-};
-
-secretbutton.onmousedown = () => {
-  const field = document.getElementById("secretid");
-  if (!field.value) return alert("Missing secret ID value!");
-  set("SECRET_ID", field.value);
-  const client = document.getElementById("tablesecret");
-  client.innerHTML = field.value;
-  field.value = null;
-  return alert("Successfully set the secret ID");
+secretfield.onchange = () => {
+  window.SECRET_ID = secretfield.value;
+  document.getElementById("secretid").innerHTML = window.SECRET_ID !== null ? window.SECRET_ID : "none set";
 };
