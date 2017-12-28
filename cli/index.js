@@ -20,4 +20,4 @@ async function recruit() {
   }
 }
 logger.info("RECRUITER", "Recruiter active! Waiting 180 seconds...");
-setInterval(recruit, 181000);
+setInterval(recruit, 185000);

@@ -12,6 +12,7 @@ class Request {
   /**
    * Get a nation with the Nationstates API
    * @return {Promise<string>}
+   * @private
    */
   static getNation() {
     return new Promise(async (resolve, reject) => {
@@ -60,11 +61,12 @@ class Request {
    * @param {string} options.secret - The Secret ID of the telegram to send
    * @param {string} options.nation - The nation to send the telegram to
    * @return {Promise<Snekfetch>}
+   * @private
    */
   static sendTG({ clientID, tgID, secret, nation } = {}) {
     return new Promise(async (resolve, reject) => {
       if (!clientID || !tgID || !secret || !nation || nation === null) reject(new NSAPIError("INVALID_OPTIONS"));
-      if (nextTelegram > Date.now()) reject(new NSAPIError("TOO_MANY_REQUESTS"));
+      if (nextTelegram > Date.now() || hasBeenRatelimited) reject(new NSAPIError("TOO_MANY_REQUESTS"));
       try {
         const res = await request
           .get(`https://www.nationstates.net/cgi-bin/api.cgi?a=sendTG&client=${clientID}&tgid=${tgID}&key=${secret}&to=${nation}`)
