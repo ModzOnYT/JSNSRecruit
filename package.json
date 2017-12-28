@@ -1,6 +1,6 @@
 {
   "name": "jsnsrecruit",
-  "version": "0.3.0-beta",
+  "version": "0.3.1-beta",
   "description": "Lightweight recruiter for Nationstates, written in Node.js",
   "main": "index.js",
   "scripts": {
