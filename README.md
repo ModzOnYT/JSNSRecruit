@@ -6,6 +6,9 @@
 ## About
 jsNSRecruit is a lightweight recruiter for [NationStates](https://nationstates.net), written in plain HTML, CSS and JavaScript.
 
+## Download
+You can download jsNSRecruit [here](https://github.com/devdutchy/jsNSRecruit/releases/tag/v0.3.0-beta).
+
 ## Setup
 ```bash
 cd path/to/jsNSRecruit
