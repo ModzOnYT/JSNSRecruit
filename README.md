@@ -1,5 +1,6 @@
+> NOTE: The package is no longer maintained, and may not be up to date for the current NationStates API version. I suggest to use a different recruiter such as [Telegrammer](https://forum.nationstates.net/viewtopic.php?p=29827675#p29827675).
+
 # jsNSRecruit
-[![Discord](https://discordapp.com/api/guilds/297442085861064705/embed.png)](https://discord.gg/uApUXn6)
 
 > A lightweight recruiter for [Nationstates](https://nationstates.net).
 
